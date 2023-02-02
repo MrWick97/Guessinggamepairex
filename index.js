@@ -35,5 +35,10 @@ resetButton.addEventListener("click", function(){
     console.log(winner)
 
 })
+hintButton.addEventListener("click", function(){
+    
+    resultMessage.textContent = "it's between 1 and 100 come on its not that complex";
+    
 
+})
 console.log(winner)
