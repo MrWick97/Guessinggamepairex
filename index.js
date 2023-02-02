@@ -9,6 +9,8 @@ const resultMessage = document.getElementById("results");
 
 let winner = Math.floor(Math.random() * 100) + 1;
 let attempts = 5 
+
+
 guessButton.addEventListener("click", function(){
     let guessNumber = guessInput.value;
     attempts = attempts -1;
@@ -17,28 +19,32 @@ guessButton.addEventListener("click", function(){
         resultMessage.textContent = "You must choose between 1-100!"
     } 
     if (guessNumber == winner){
-        resultMessage.textContent = "you win"
+        resultMessage.textContent = "!!!YOU WIN!!!"
     }  else if(guessNumber < winner) {
-        resultMessage.textContent = `The number is Higher. ${attempts} tries remain`
+        if(guessNumber > winner -10){
+            resultMessage.textContent = `Just a bit Higher. ${attempts} tries remain`
+        } else {resultMessage.textContent = `The number is Higher. ${attempts} tries remain`}
     } else if (guessNumber > winner) {
-        resultMessage.textContent = `The number is Lower. ${attempts} tries remain`
+        if(guessNumber < winner +10) {
+            resultMessage.textContent = `Just a bit Lower. ${attempts} tries remain`
+        } else {resultMessage.textContent = `The number is Lower. ${attempts} tries remain`}
     }
     if (attempts <= 0){
         resultMessage.textContent = "You are out of Attempts Reset and try again"
     } 
     
 })
+
 resetButton.addEventListener("click", function(){
     attempts = 5;
     resultMessage.textContent = "You have 5 guesses";
-    let winner = Math.floor(Math.random() * 100) + 1;
+    winner = Math.floor(Math.random() * 100) + 1;
     console.log(winner)
 
 })
+
 hintButton.addEventListener("click", function(){
     
     resultMessage.textContent = "it's between 1 and 100 come on its not that complex";
-    
-
 })
 console.log(winner)
