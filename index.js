@@ -5,14 +5,35 @@ const guessInput = document.getElementById("numberInput");
 const guessButton = document.getElementById("buttonGuess");
 const resetButton = document.getElementById("resetButton");
 const hintButton = document.getElementById("hintButton");
-
-const h1 = document.querySelector("h1");
+const resultMessage = document.getElementById("results");
 
 let winner = Math.floor(Math.random() * 100) + 1;
 let attempts = 5 
 guessButton.addEventListener("click", function(){
     let guessNumber = guessInput.value;
-    console.log(guessNumber)
+    attempts = attempts -1;
+    
+    if(guessNumber < 1 || guessNumber > 100) {
+        resultMessage.textContent = "You must choose between 1-100!"
+    } 
+    if (guessNumber == winner){
+        resultMessage.textContent = "you win"
+    }  else if(guessNumber < winner) {
+        resultMessage.textContent = `The number is Higher. ${attempts} tries remain`
+    } else if (guessNumber > winner) {
+        resultMessage.textContent = `The number is Lower. ${attempts} tries remain`
+    }
+    if (attempts <= 0){
+        resultMessage.textContent = "You are out of Attempts Reset and try again"
+    } 
+    
+})
+resetButton.addEventListener("click", function(){
+    attempts = 5;
+    resultMessage.textContent = "You have 5 guesses";
+    let winner = Math.floor(Math.random() * 100) + 1;
+    console.log(winner)
+
 })
 
-console.log(h1, guessButton, guessInput, resetButton, hintButton, winner)
+console.log(winner)
